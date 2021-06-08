@@ -67,4 +67,8 @@ public class PersonajeService {
         return this.personajeRepository.save(personaje);
     }
 
+    public ArrayList<PersonajeModel> obtenerPersonajePorPeso(Float peso){
+        return this.personajeRepository.findByPeso(peso);
+    }
+
 }

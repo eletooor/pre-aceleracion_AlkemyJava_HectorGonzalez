@@ -52,6 +52,7 @@ public class PersonajeController {
     public ArrayList<PersonajeModel> obtenerPersonajesSegunParametros(
             @RequestParam(required = false, name = "name") String nombre,
             @RequestParam(required = false, name = "age") Integer edad,
+            @RequestParam(required = false, name = "weight") Float peso,
             @RequestParam(required = false, name = "movies") Long pelicula) {
         if (nombre != null) {
             return this.personajeService.obtenerPersonajePorNombre(nombre);
@@ -62,6 +63,8 @@ public class PersonajeController {
         } else if (pelicula != null) {
             return this.personajeService.obtenerPersonajePorPeliculaOSerie(pelicula);
 
+        } else if (peso != null) {
+            return this.personajeService.obtenerPersonajePorPeso(peso);
         } else {
             return this.personajeService.obtenerPersonajes();
         }

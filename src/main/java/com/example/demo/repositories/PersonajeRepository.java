@@ -15,4 +15,6 @@ public interface PersonajeRepository extends CrudRepository<PersonajeModel, Long
     public abstract ArrayList<PersonajeModel> findByEdad(int edad);
 
     public abstract ArrayList<PersonajeModel> findByPeliculaOSerieId(Long id);
+
+    public abstract ArrayList<PersonajeModel> findByPeso(Float peso);
 }

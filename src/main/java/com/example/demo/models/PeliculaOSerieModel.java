@@ -20,6 +20,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "PeliculaOSerie")
 public class PeliculaOSerieModel {
@@ -45,6 +47,7 @@ public class PeliculaOSerieModel {
 
     @ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(name = "Peli_Personaje", joinColumns = @JoinColumn(name = "id_Peli"), inverseJoinColumns = @JoinColumn(name = "id_Personaje"))
+    @JsonIgnoreProperties("peliculaOSerie")
     private Set<PersonajeModel> personajesAsociados = new HashSet<>();
 
     // GETTERS Y SETTERS

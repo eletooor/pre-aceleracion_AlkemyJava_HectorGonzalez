@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "personajes")
@@ -27,8 +27,9 @@ public class PersonajeModel {
     private Float peso;
     private String historia;
 
-    @JsonBackReference
+   
     @ManyToMany(mappedBy = "personajesAsociados")
+    @JsonIgnoreProperties("personajesAsociados")
     private Set<PeliculaOSerieModel> peliculaOSerie = new HashSet<>();
 
     public Long getId() {
