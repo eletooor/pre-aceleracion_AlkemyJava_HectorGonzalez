@@ -25,12 +25,14 @@ public class PersonajeController {
     @Autowired
     PersonajeService personajeService;
 
+    //CREACION
     @PostMapping() // with id for update, only data for new
     public PersonajeModel guardarPersonaje(@RequestBody PersonajeModel personaje) {
 
         return this.personajeService.guardarPersonaje(personaje);
     }
 
+    //ELIMINACION
     @DeleteMapping(path = "/{id}")
     public String eliminarPersonajeById(@PathVariable("id") long id) {
        return this.personajeService.eliminarPersonajePorId(id);

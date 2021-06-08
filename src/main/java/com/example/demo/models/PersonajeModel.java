@@ -28,6 +28,7 @@ public class PersonajeModel {
     private Float peso;
     private String historia;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "personajesAsociados")
     private Set<PeliculaOSerieModel> peliculaOSerie = new HashSet<>();
 
@@ -81,7 +82,7 @@ public class PersonajeModel {
         this.historia = historia;
     }
    // @JsonManagedReference
-   @JsonBackReference
+  // @JsonBackReference
     public Set<PeliculaOSerieModel> getPeliculaOSerie() {
         return peliculaOSerie;
     }

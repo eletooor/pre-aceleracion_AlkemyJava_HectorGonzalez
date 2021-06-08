@@ -42,10 +42,12 @@ public class PeliculaOSerieModel {
     @Max(5) // VALIDACION DEL MAXIMO
     private Integer calificacion;
 
+    @JsonManagedReference
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_genero")
     private GeneroModel genero;
 
+    @JsonManagedReference
     @ManyToMany(cascade = {
         CascadeType.MERGE})
     @JoinTable(name = "Peli_Personaje",
@@ -87,8 +89,9 @@ public class PeliculaOSerieModel {
         this.fechaCreacion = fechaCreacion;
     }
 
-    //@JsonBackReference
+   // @JsonBackReference
    // @JsonManagedReference
+ 
     public Set<PersonajeModel> getPersonajesAsociados() {
         return personajesAsociados;
     }
@@ -105,7 +108,7 @@ public class PeliculaOSerieModel {
         this.calificacion = calificacion;
     }
 
-    //@JsonBackReference
+  // @JsonBackReference
   //  @JsonManagedReference
     public GeneroModel getGenero() {
         return genero;

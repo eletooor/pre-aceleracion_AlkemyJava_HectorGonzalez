@@ -26,6 +26,7 @@ public class GeneroModel {
     private String nombre;
     private String imagen;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "genero", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PeliculaOSerieModel> peliculasOSeries;
 
@@ -54,7 +55,7 @@ public class GeneroModel {
     }
 
     //@JsonManagedReference
-    @JsonBackReference
+   // @JsonBackReference
     public List<PeliculaOSerieModel> getPeliculasOSeries() {
         return peliculasOSeries;
     }
