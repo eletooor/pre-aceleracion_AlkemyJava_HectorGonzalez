@@ -6,8 +6,8 @@ import com.example.demo.models.PeliculaOSerieModel;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface PeliculaOSerieRepository extends CrudRepository<PeliculaOSerieModel, Long > {
-    
+public interface PeliculaOSerieRepository extends CrudRepository<PeliculaOSerieModel, Long> {
+
     public abstract ArrayList<PeliculaOSerieModel> findByTitulo(String titulo);
 
     public abstract ArrayList<PeliculaOSerieModel> findByGeneroId(Long id_genero);

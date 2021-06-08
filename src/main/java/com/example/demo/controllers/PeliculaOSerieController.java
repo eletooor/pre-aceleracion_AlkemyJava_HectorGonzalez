@@ -9,9 +9,9 @@ import com.example.demo.services.PeliculaOSerieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,10 +23,6 @@ public class PeliculaOSerieController {
 
     @Autowired
     PeliculaOSerieService peliculaOSerieService;
-    /*
-     * @GetMapping() public ArrayList<PeliculaUtilModel> obtenerPeliculasOSeries() {
-     * return this.peliculaOSerieService.obtenerPeliculasOSeries(); }
-     */
 
     @GetMapping(path = "/{id}")
     public Optional<PeliculaOSerieModel> obtenerPeliculaOSerieById(@PathVariable("id") long id) {
@@ -43,13 +39,14 @@ public class PeliculaOSerieController {
         return this.peliculaOSerieService.eliminarPeliculaOSeriePorId(id);
     }
 
-    @PatchMapping(path = "/{id}") // ACTUALIZACION
+    @PutMapping(path = "/{id}") // ACTUALIZACION
     public PeliculaOSerieModel actualizarPeliculaOSerieById(@PathVariable("id") long id,
             @RequestBody PeliculaOSerieModel peliculaOSerie) {
         return this.peliculaOSerieService.actualizarPeliculaOSeriePorId(id, peliculaOSerie);
     }
 
     @GetMapping()
+
     public ArrayList<PeliculaOSerieModel> obtenerPeliculasOSeriesSegunParametros(
             @RequestParam(name = "name", required = false) String titulo,
             @RequestParam(name = "genre", required = false) Long genero,
@@ -57,12 +54,15 @@ public class PeliculaOSerieController {
         if (titulo != null) {
             System.out.println("TITULO!!");
             return this.peliculaOSerieService.obtenerPeliculaOSeriePorTitulo(titulo);
+
         } else if (genero != null) {
             System.out.println("GENERO!!");
             return this.peliculaOSerieService.obtenerPeliculasOSeriesPorGenero(genero);
-        } else if (orden!=null&&(orden.equals("ASC") || orden.equals("DESC")) ) {
+
+        } else if (orden != null && (orden.equals("ASC") || orden.equals("DESC"))) {
             System.out.println("ORDENANDO!!");
             return this.peliculaOSerieService.obtenerPeliculasOSeriesPorOrden(orden);
+
         } else {
             System.out.println("NO ORDENA!!");
             return this.peliculaOSerieService.obtenerPeliculasOSeries();

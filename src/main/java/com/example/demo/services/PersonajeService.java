@@ -1,39 +1,20 @@
 package com.example.demo.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Optional;
 
 import com.example.demo.models.PersonajeModel;
 import com.example.demo.repositories.PersonajeRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 @Service
 public class PersonajeService {
     @Autowired
     PersonajeRepository personajeRepository;
-/*********** DEBIDO A LA NECESIDAD DE COMBINAR LAS LLAMADAS EN
- * UN MISMO ENDPOINT SE HA OPTADO POR CAMBIAR LA ESTRATEGIA***********
- * 
-    public ArrayList<PersonajeUtilModel> obtenerPersonajes() {
-        ArrayList<PersonajeModel> recuperadas = new ArrayList<>();
-        recuperadas = (ArrayList<PersonajeModel>) personajeRepository.findAll();
-        ArrayList<PersonajeUtilModel> salida = new ArrayList<>();
 
-        for (int i = 0; i < recuperadas.size(); i++) {
-            PersonajeUtilModel aux = new PersonajeUtilModel();
-
-            aux.setId(recuperadas.get(i).getId());
-            aux.setImagen(recuperadas.get(i).getImagen());
-            aux.setNombre(recuperadas.get(i).getNombre());
-            salida.add(i, aux);
-        }
-        return salida;
-
-    }
-    A CONTINUACION, ALTERNATIVA A LA RESOLUCION
-**************************************************/
-    public ArrayList<PersonajeModel> obtenerPersonajes(){
+    public ArrayList<PersonajeModel> obtenerPersonajes() {
         ArrayList<PersonajeModel> recuperadas = new ArrayList<>();
         recuperadas = (ArrayList<PersonajeModel>) personajeRepository.findAll();
         ArrayList<PersonajeModel> salida = new ArrayList<>();
@@ -48,10 +29,12 @@ public class PersonajeService {
         return salida;
     }
 
+    // CREAR
     public PersonajeModel guardarPersonaje(PersonajeModel personaje) {
         return personajeRepository.save(personaje);
     }
 
+    // ELIMINAR
     public String eliminarPersonajePorId(long id) {
         try {
             this.personajeRepository.deleteById(id);
@@ -73,14 +56,15 @@ public class PersonajeService {
         return this.personajeRepository.findByEdad(edad);
     }
 
-    public ArrayList<PersonajeModel> obtenerPersonajePorPeliculaOSerie(Long id){
+    public ArrayList<PersonajeModel> obtenerPersonajePorPeliculaOSerie(Long id) {
         System.out.println("LLEGA HASTA ACA");
         return this.personajeRepository.findByPeliculaOSerieId(id);
     }
-    
-    /*
-     * METODO IMPLEMENTADO INDIRECTAMENTE EN GUARDAR PERSONAJE public PersonajeModel
-     * actualizarPersonajePorId( long id, PersonajeModel personaje){ return
-     * this.personajeRepository.save(personaje); }
-     */
+
+    // ACTUALIZAR
+    public PersonajeModel actualizarPersonajePorId(Long id, PersonajeModel personaje) {
+        personaje.setId(id);
+        return this.personajeRepository.save(personaje);
+    }
+
 }

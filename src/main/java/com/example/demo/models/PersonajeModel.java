@@ -12,7 +12,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "personajes")
@@ -31,8 +30,6 @@ public class PersonajeModel {
     @JsonBackReference
     @ManyToMany(mappedBy = "personajesAsociados")
     private Set<PeliculaOSerieModel> peliculaOSerie = new HashSet<>();
-
-  
 
     public Long getId() {
         return id;
@@ -81,8 +78,7 @@ public class PersonajeModel {
     public void setHistoria(String historia) {
         this.historia = historia;
     }
-   // @JsonManagedReference
-  // @JsonBackReference
+
     public Set<PeliculaOSerieModel> getPeliculaOSerie() {
         return peliculaOSerie;
     }
@@ -91,5 +87,4 @@ public class PersonajeModel {
         this.peliculaOSerie = peliculaOSerie;
     }
 
-    
 }

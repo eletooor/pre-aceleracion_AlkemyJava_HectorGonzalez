@@ -20,9 +20,6 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 @Table(name = "PeliculaOSerie")
 public class PeliculaOSerieModel {
@@ -42,25 +39,19 @@ public class PeliculaOSerieModel {
     @Max(5) // VALIDACION DEL MAXIMO
     private Integer calificacion;
 
-    @JsonManagedReference
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_genero")
     private GeneroModel genero;
 
-    @JsonManagedReference
-    @ManyToMany(cascade = {
-        CascadeType.MERGE})
-    @JoinTable(name = "Peli_Personaje",
-               joinColumns =   @JoinColumn(name = "id_Peli") ,
-               inverseJoinColumns =   @JoinColumn(name = "id_Personaje") )
+    @ManyToMany(cascade = { CascadeType.MERGE })
+    @JoinTable(name = "Peli_Personaje", joinColumns = @JoinColumn(name = "id_Peli"), inverseJoinColumns = @JoinColumn(name = "id_Personaje"))
     private Set<PersonajeModel> personajesAsociados = new HashSet<>();
 
-
-    //GETTERS Y SETTERS
+    // GETTERS Y SETTERS
     public Long getId() {
         return id;
     }
- 
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -89,9 +80,6 @@ public class PeliculaOSerieModel {
         this.fechaCreacion = fechaCreacion;
     }
 
-   // @JsonBackReference
-   // @JsonManagedReference
- 
     public Set<PersonajeModel> getPersonajesAsociados() {
         return personajesAsociados;
     }
@@ -108,8 +96,6 @@ public class PeliculaOSerieModel {
         this.calificacion = calificacion;
     }
 
-  // @JsonBackReference
-  //  @JsonManagedReference
     public GeneroModel getGenero() {
         return genero;
     }

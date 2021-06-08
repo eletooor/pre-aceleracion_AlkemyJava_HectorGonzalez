@@ -28,10 +28,6 @@ public class PeliculaOSerieService {
         }
         return salida;
     }
-    /*
-     * public ArrayList<PeliculaOSerieModel> obtenerPeliculasOSeries() { return
-     * (ArrayList<PeliculaOSerieModel>)this.peliculaOSerieRepository.findAll(); }
-     */
 
     public PeliculaOSerieModel guardarPeliculaOSerie(PeliculaOSerieModel peliculaOSerie) {
         return this.peliculaOSerieRepository.save(peliculaOSerie);
@@ -60,22 +56,18 @@ public class PeliculaOSerieService {
     public ArrayList<PeliculaOSerieModel> obtenerPeliculaOSeriePorTitulo(String titulo) {
         return this.peliculaOSerieRepository.findByTitulo(titulo);
     }
-    /*
-     * public ArrayList<PeliculaOSerieModel> obtenerPeliculaOSeriePorGenero(Long
-     * genero){ return this.peliculaOSerieRepository.findById_genero(genero); }
-     */
 
     public ArrayList<PeliculaOSerieModel> obtenerPeliculasOSeriesPorGenero(Long id) {
         return this.peliculaOSerieRepository.findByGeneroId(id);
     }
 
     public ArrayList<PeliculaOSerieModel> obtenerPeliculasOSeriesPorOrden(String orden) {
-        if (orden.equals("ASC") ) {
+        if (orden.equals("ASC")) {
             System.out.println("ASC");
-return this.peliculaOSerieRepository.findByOrderByFechaCreacionAsc();
+            return this.peliculaOSerieRepository.findByOrderByFechaCreacionAsc();
         } else {
             System.out.println("DESC");
-return this.peliculaOSerieRepository.findByOrderByFechaCreacionDesc();
+            return this.peliculaOSerieRepository.findByOrderByFechaCreacionDesc();
         }
     }
 }

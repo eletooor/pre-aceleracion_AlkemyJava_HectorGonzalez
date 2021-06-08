@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "genero")
@@ -54,8 +53,6 @@ public class GeneroModel {
         this.imagen = imagen;
     }
 
-    //@JsonManagedReference
-   // @JsonBackReference
     public List<PeliculaOSerieModel> getPeliculasOSeries() {
         return peliculasOSeries;
     }
@@ -63,6 +60,5 @@ public class GeneroModel {
     public void setPeliculasOSeries(List<PeliculaOSerieModel> peliculasOSeries) {
         this.peliculasOSeries = peliculasOSeries;
     }
-
 
 }
