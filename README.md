@@ -1,4 +1,4 @@
-"# pre-aceleracion_AlkemyJava_HectorGonzalez" 
+# pre-aceleracion_AlkemyJava_HectorGonzalez
 
 Documentacion: pre-aceleracionJavaDoc.postman_collenction.json
 
